@@ -18,13 +18,13 @@
     <script>
         var f1 = function(a) {
             var num1 = parseInt(document.getElementById("num1").value);
-            if (num1 == "") {
-                alert("숫자 1 입력칸이 입력되지 않았습니다.");
+            if (num1 == "" || num1 == 0) {
+                alert("숫자 1 입력칸이 입력되지 않았거나 0이 입력되었습니다.");
                 return false;
             }
             var num2 = parseInt(document.getElementById("num2").value);
-            if (num2 == "") {
-                alert("숫자 2 입력칸이 입력되지 않았습니다.");
+            if (num2 == "" || parseInt(num2) == 0) {
+                alert("숫자 2 입력칸이 입력되지 않았거나 0이 입력되었습니다.");
                 return false;
             }
             var display = document.getElementById("display");
