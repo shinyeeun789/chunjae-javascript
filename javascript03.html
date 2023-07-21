@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 자바스크립트 기본03 - 연산문 </title>
+</head>
+<body>
+    <div id="display"></div>
+    <hr>
+    숫자 1 : <input type="number" size="5" min="1" max="500" id="num1" required><br>
+    숫자 2 : <input type="number" size="5" min="1" max="500" id="num2" required>
+    <hr>
+    <button id="btn1" onclick="f1('1')"> + </button>
+    <button id="btn2" onclick="f1('2')"> - </button>
+    <button id="btn3" onclick="f1('3')"> * </button>
+    <button id="btn4" onclick="f1('4')"> / </button>
+    <script>
+        var f1 = function(a) {
+            var num1 = parseInt(document.getElementById("num1").value);
+            if (num1 == "") {
+                alert("숫자 1 입력칸이 입력되지 않았습니다.");
+                return false;
+            }
+            var num2 = parseInt(document.getElementById("num2").value);
+            if (num2 == "") {
+                alert("숫자 2 입력칸이 입력되지 않았습니다.");
+                return false;
+            }
+            var display = document.getElementById("display");
+
+            if (a == '1') {
+                display.innerHTML = "<h2>" + (num1 + num2) + "</h2>";
+            } else if (a == '2') {
+                display.innerHTML = "<h2>" + (num1 - num2) + "</h2>";
+            } else if (a == '3') {
+                display.innerHTML = "<h2>" + (num1 * num2) + "</h2>";
+            } else {
+                display.innerHTML = "<h2>" + (num1 / num2) + "</h2>";
+            }
+        }
+    </script>
+</body>
+</html>
