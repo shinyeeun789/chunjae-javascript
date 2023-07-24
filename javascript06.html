@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 자바스크립트 기본06 - 사용자 정의 함수 </title>
+</head>
+<body>
+    <script>
+        // 방법 1) function 함수명(매개변수명, ...) { [return 값 또는 변수;] }
+        // 방법 2) var 함수명 = function(매개변수명, ...) { [return 값 또는 변수;] }
+        
+        function fnc1() {
+            document.write("<br>매개변수X, 리턴X <br>");
+        }
+        function fnc2(x) {
+            document.write("x : " + x);
+            document.write("<br>매개변수O, 리턴X <br>");
+        }
+        function fnc3() {
+            return "<br>매개변수X, 리턴O <br>";
+        }
+        function fnc4(x) {
+            document.write("x : " + x);
+            return "<br>매개변수O, 리턴O <br>"
+        }
+
+        var res4 = fnc4("김이름");
+        document.write(res4);
+        var res3 = fnc3();
+        document.write(res3);
+        fnc2("이이름");
+        fnc1();
+    </script>
+</body>
+</html>
