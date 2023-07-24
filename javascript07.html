@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 자바스크립트 기본07 - 조건문/반복문 </title>
+</head>
+<body>
+    <h2> 과목별 점수 </h2>
+    <ul class="lst" id="lst1">
+        <li class="item"> 80 </li>
+        <li class="item"> 100 </li>
+        <li class="item"> 90 </li>
+        <li class="item"> 95 </li>
+        <li class="item"> 85 </li>
+    </ul>
+    <hr>
+    <div id="tot"></div>
+    <div id="avg"></div>
+    <div id="pan"></div>
+    <div id="hak"></div>
+    <div id="remark"></div>
+    <div id="sang"></div>
+    <div class="btn-group">
+        <button type="button" onclick="compute()"> 계산 </button>
+    </div>
+
+    <script>
+        // 총       점(tot) : 다섯 과목 점수의 합계
+        // 평       균(avg) : 총점 / 5
+        // 판       정(pan) : 모든 점수가 80점 이상이고, 평균이 70점 이상이면 "합격", 아니면 "불합격"
+        // 학       점(hak) : 평균이 90 이상이면 "A", 80점 이상이면 "B", 70점 이상이면 "C", 70점 미만이면 "F"
+        // 참고사항(remark) : 학점이 "A"이면 "고득점", "B"이면 "우수", "C"이면 "보통", 기타는 "재평가"
+        // 과목우수상(sang) : 어느 한 과목이라도 100점이면 "과목우수", 아니면 "해당없음"
+
+        var tot = document.getElementById("tot");
+        var avg = document.getElementById("avg");
+        var pan = document.getElementById("pan");
+        var hak = document.getElementById("hak");
+        var remark = document.getElementById("remark");
+        var sang = document.getElementById("sang");
+        
+        function compute() {
+            var lst = document.getElementsByClassName("item");
+            
+            // 1. 총점 & 판정 & 과목우수상
+            var total = 0;
+            var pan1 = true;
+            var susang = false;
+            // for(var 인덱스변수=0; 인덱스변수<개수; 인덱스변수증감식) { 실행문; }
+            for (var i=0; i<lst.length; i++) {
+                total += parseInt(lst[i].innerText);
+                
+                if (lst[i].innerText < 80) {            // 판정 시 모든 점수가 80점 이상인지 확인
+                    pan1 = false;
+                }
+
+                if (lst[i].innerText == 100) {          // 과목우수상 출력 시 100점인 과목이 있으면 과목우수
+                    susang = true;
+                }
+            }
+            tot.innerHTML = "<h3> 총점 : " + total + " </h3>";
+
+            // 2. 평균
+            var average = total / lst.length;
+            avg.innerHTML = "<h3> 평균 : " + average + "</h3>";
+
+            // 3. 판정
+            /* 
+                if(조건식1) { 
+                    조건식1참일때실행문장; 
+                } else if(조건식2) {
+                    조건식2참일때실행문장;
+                } else { 
+                    모든조건이거짓일때실행문장;
+                } 
+            */
+            if (pan1 && average >=70) {
+                pan.innerHTML = "<h3> 판정 : 합격 </h3>";
+            } else {
+                pan.innerHTML = "<h3> 판정 : 불합격 </h3>";
+            }
+
+            // 4. 학점
+            /*
+                switch(기준변수) {
+                    case 값1:
+                        기준변수가 값1이면 실행할 문장;
+                        break;
+                    case 값2:
+                        기준변수가 값2이면 실행할 문장;
+                        break;
+                    ....
+                    case 값n:
+                        기준변수가 값n이면 실행할 문장;
+                        break;
+                    default:
+                        기준변수의 값이 어떤 case에도 일치하지 않는 경우;
+                        break;
+                }
+            */
+            var hakjum = "";
+            switch(average / 10) {
+                case 10:
+                case 9:
+                    hakjum = "A";
+                    break;
+                case 8:
+                    hakjum = "B";
+                    break;
+                case 7:
+                    hakjum = "C";
+                    break;
+                default:
+                    hakjum = "F";
+                    break;
+            }
+            hak.innerHTML = "<h3> 학점 : " + hakjum + " </h3>";
+
+            // 5. 참고사항
+            switch(hakjum) {
+                case "A":
+                    remark.innerHTML = "<h3> 참고사항 : 고득점 </h3>";
+                    break;
+                case "B":
+                    remark.innerHTML = "<h3> 참고사항 : 우수 </h3>";
+                    break;
+                case "C":
+                    remark.innerHTML = "<h3> 참고사항 : 보통 </h3>";
+                    break;
+                default:
+                    remark.innerHTML = "<h3> 참고사항 : 재평가 </h3>";
+                    break;
+            }
+
+            // 6. 과목우수상  어느 한 과목이라도 100점이면 "과목우수", 아니면 "해당없음"
+            if (susang) {
+                sang.innerHTML = "<h3> 과목우수상 : 과목우수 </h3>";
+            } else {
+                sang.innerHTML = "<h3> 과목우수상 : 해당없음 </h3>";
+            }
+
+            /*
+                카운트변수 선언 및 초기화 문장;
+                while(조건식) {
+                    반복 실행할 문장;
+                    카운트변수 증감식;
+                }
+            */
+
+        }
+    </script>
+</body>
+</html>
