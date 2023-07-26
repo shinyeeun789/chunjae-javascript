@@ -8,7 +8,7 @@
         #calculator {
             background-color: pink;
             width: 200px;
-            height: 300px;
+            height: 340px;
             padding: 10px;
             margin: 20px auto;
             border: 2px solid #777;
@@ -27,9 +27,13 @@
         table {
             margin: 10px auto;
         }
-        .btn {
+        table tr td {
             width: 40px;
             height: 40px;
+        }
+        .btn {
+            width: 100%;
+            height: 100%;
             background-color: white;
             border-radius: 5px;
         }
@@ -46,6 +50,9 @@
             <input type="text" id="display">
             <!-- 인라인 이벤트 써서 구현하기 -->
             <table>
+                <tr>
+                    <td colspan="4"><button class="btn" id="clear" onclick="cl()"> CLEAR </button></td>
+                </tr>
                 <tr>
                     <td><button class="btn" id="btn7" onclick="cal(7)"> 7 </button></td>
                     <td><button class="btn" id="btn8" onclick="cal(8)"> 8 </button></td>
@@ -80,6 +87,9 @@
         }
         function rt() {         // eval() : 전달된 문자열을 JavaScript 코드로 해석하여 해석된 코드 실행
             display.value = eval(display.value);
+        }
+        function cl() {
+            display.value = "";
         }
     </script>
 </body>
